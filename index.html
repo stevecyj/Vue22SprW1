@@ -20,6 +20,7 @@
           <div class="col-md-6">
             <h2>產品列表</h2>
             <table class="table table-hover mt-4">
+              <!-- 表頭 -->
               <thead>
                 <tr>
                   <th width="150">產品名稱</th>
@@ -29,8 +30,9 @@
                   <th width="120">查看細節</th>
                 </tr>
               </thead>
+              <!-- 表格內容 -->
               <tbody>
-                <tr v-for="item in products">
+                <tr v-for="item in products" :key="item.id">
                   <td width="150">{{ item.title }}</td>
                   <td width="120">{{ item.origin_price }}</td>
                   <td width="120">{{ item.price }}</td>
@@ -39,7 +41,13 @@
                     <span>未啟用</span>
                   </td>
                   <td width="120">
-                    <button type="button" class="btn btn-primary" @click="showProduct(item)">查看細節</button>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      @click="showProduct(item)"
+                    >
+                      查看細節
+                    </button>
                   </td>
                 </tr>
               </tbody>
@@ -48,16 +56,23 @@
           </div>
           <div class="col-md-6">
             <h2>單一產品細節</h2>
-            <template>
+            <!-- template,搭配 v-if -->
+            <template v-if="temp.id">
               <div class="card mb-3">
-                <img :src="temp.imageUrl" class="card-img-top primary-image" alt="主圖" />
+                <img
+                  :src="temp.imageUrl"
+                  class="card-img-top primary-image"
+                  alt="主圖"
+                />
                 <div class="card-body">
                   <h5 class="card-title">
-                    {{ temp }}
-                    <span class="badge bg-primary ms-2">{{ }}</span>
+                    {{ temp.title }}
+                    <span class="badge bg-primary ms-2"
+                      >{{ temp.category}}</span
+                    >
                   </h5>
-                  <p class="card-text">商品描述：{{ }}</p>
-                  <p class="card-text">商品內容：{{ }}</p>
+                  <p class="card-text">商品描述：{{ temp.description }}</p>
+                  <p class="card-text">商品內容：{{temp.content }}</p>
                   <div class="d-flex">
                     <p class="card-text me-2">{{ }}</p>
                     <p class="card-text text-secondary"><del>{{ }}</del></p>
@@ -65,9 +80,9 @@
                   </div>
                 </div>
               </div>
-              <template>
+              <!-- <template>
                 <img src="" alt="" class="images m-2" />
-              </template>
+              </template> -->
             </template>
             <p class="text-secondary">請選擇一個商品查看</p>
           </div>
