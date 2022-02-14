@@ -69,7 +69,7 @@ const app = {
     showProduct(item) {
       // console.log(item);
       this.temp = item;
-      console.log(this.temp);
+      // console.log(this.temp);
       // console.log(temp.title);
     },
   },
